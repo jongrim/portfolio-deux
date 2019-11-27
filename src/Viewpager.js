@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import clamp from "lodash-es/clamp";
-import debounce from "lodash-es/debounce";
 import { useSprings, animated } from "react-spring";
 import { useGesture } from "react-use-gesture";
 
@@ -12,7 +11,7 @@ import { useGesture } from "react-use-gesture";
 
 const pages = [
   {
-    navColor: "black",
+    navColor: "#03254E",
     url:
       "https://images.pexels.com/photos/1883385/pexels-photo-1883385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260&fp-y=0.48&fit=crop&crop=focalpoint"
   },
@@ -22,27 +21,11 @@ const pages = [
       "https://images.pexels.com/photos/924675/pexels-photo-924675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   },
   {
-    navColor: "green",
-    url:
-      "https://images.pexels.com/photos/296878/pexels-photo-296878.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  },
-  {
     navColor: "white",
     url:
       "https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   }
 ];
-
-// function updateCurrent({ index, setNavColor, yDir }) {
-//   index.current = clamp(
-//     index.current + (yDir > 0 ? 1 : -1),
-//     Math.max(index.current - 1, 0),
-//     Math.min(pages.length - 1, index.current + 1)
-//   );
-//   pages[index.current].navColor && setNavColor(pages[index.current].navColor);
-// }
-
-// const debounced = debounce(updateCurrent, 750);
 
 const handleGesture = ({ index, setNavColor, set }) => ({
   down,
@@ -81,34 +64,34 @@ function Viewpager({ setNavColor }) {
     onDrag: handleGesture({ index, setNavColor, set }),
     onScroll: state => {
       console.log({ state });
-    },
-    onWheel: ({ direction: [, yDir], first, ...rest }) => {
-      console.log({ rest });
-      function updateCurrent() {
-        index.current = clamp(
-          index.current + (yDir > 0 ? 1 : -1),
-          Math.max(index.current - 1, 0),
-          Math.min(pages.length - 1, index.current + 1)
-        );
-        pages[index.current].navColor &&
-          setNavColor(pages[index.current].navColor);
-      }
-      if (first) {
-        updateCurrent({ index, setNavColor, yDir });
-      }
-      set(i => {
-        // if (i < index.current - 1 || i > index.current + 1)
-        //   return { display: "none" };
-        const y = (i - index.current) * window.innerHeight * Math.abs(yDir);
-        const sc = 0.95;
-        return { y, sc, display: "block" };
-      });
-    },
-    onWheelEnd: () => {
-      set(() => {
-        return { sc: 1, display: "block" };
-      });
     }
+    // onWheel: ({ direction: [, yDir], first, ...rest }) => {
+    //   console.log({ rest });
+    //   function updateCurrent() {
+    //     index.current = clamp(
+    //       index.current + (yDir > 0 ? 1 : -1),
+    //       Math.max(index.current - 1, 0),
+    //       Math.min(pages.length - 1, index.current + 1)
+    //     );
+    //     pages[index.current].navColor &&
+    //       setNavColor(pages[index.current].navColor);
+    //   }
+    //   if (first) {
+    //     updateCurrent({ index, setNavColor, yDir });
+    //   }
+    //   set(i => {
+    //     // if (i < index.current - 1 || i > index.current + 1)
+    //     //   return { display: "none" };
+    //     const y = (i - index.current) * window.innerHeight * Math.abs(yDir);
+    //     const sc = 0.95;
+    //     return { y, sc, display: "block" };
+    //   });
+    // },
+    // onWheelEnd: () => {
+    //   set(() => {
+    //     return { sc: 1, display: "block" };
+    //   });
+    // }
   });
   return props.map(({ y, display, sc }, i) => {
     return (

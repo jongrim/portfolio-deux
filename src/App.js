@@ -16,11 +16,11 @@ function navColorReducer(state, action) {
 
 function App() {
   const [current, dispatch] = React.useReducer(navColorReducer, {
-    navColor: "black"
+    navColor: "#03254E"
   });
   const [position, setPosition] = React.useState("projects");
   return (
-    <div style={{ display: "flex" }}>
+    <div className="container">
       <div className="nav" style={{ color: current.navColor }}>
         <button
           onClick={() => {

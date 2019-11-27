@@ -18,7 +18,7 @@ body {
 
 #root {
   position: fixed;
-  overflow: hidden;
+  overflow: scroll;
   width: 100%;
   height: 100%;
   cursor: url("https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png")
@@ -26,10 +26,14 @@ body {
     auto;
 }
 
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
 .screen {
   flex: 0 0 100%;
-  width: 100vw;
-  height: 100vh;
   transition: transform 0.3s ease-out;
 }
 
@@ -39,8 +43,8 @@ body {
 }
 
 .nav {
-  position: absolute;
-  z-index: 3;
+  position: fixed;
+  z-index: 1;
   color: white;
   width: 100%;
   margin: 5px 0 0 12px;
@@ -95,17 +99,20 @@ body {
   height: 100%;
 }
 
-@media (max-screen-size: 678px) {
-  /* TODO - Make this media sizing work */
+@media (max-width: 678px) {
   .aboutContent > div {
-    display: flex;
     width: 100%;
-    margin-bottom: 2rem;
   }
 }
+
+@media (min-width: 678px) {
+  .aboutContent > div {
+    width: 55%;
+  }
+}
+
 .aboutContent > div {
   display: flex;
-  width: 55%;
   margin-bottom: 2rem;
 }
 
