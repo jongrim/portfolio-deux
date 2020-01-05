@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 
 function StateMachine() {
@@ -9,7 +8,7 @@ function StateMachine() {
         Discussion of using State Machines to simplify and improve UI
         development
       </p>
-      <Link to="/ui-via-state-machines">See the slides</Link>
+      <a href="grimcoding.xyz/ui-via-state-machines">See the slides</a>
     </ProjectCard>
   );
 }
