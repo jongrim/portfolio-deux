@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import clamp from "lodash-es/clamp";
 import { useSprings, animated } from "react-spring";
 import { useGesture } from "react-use-gesture";
+import StateMachine from "./StateMachine";
 
 /**
  * Projects:
@@ -13,17 +14,22 @@ const pages = [
   {
     navColor: "#03254E",
     url:
-      "https://images.pexels.com/photos/1883385/pexels-photo-1883385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260&fp-y=0.48&fit=crop&crop=focalpoint"
+      "https://images.pexels.com/photos/1883385/pexels-photo-1883385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260&fp-y=0.48&fit=crop&crop=focalpoint",
+    component: () => (
+      <div>grimcoding.xyz is under improvement. Check back soon!</div>
+    )
   },
   {
     navColor: "#03254E",
     url:
-      "https://images.pexels.com/photos/924675/pexels-photo-924675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      "https://images.pexels.com/photos/924675/pexels-photo-924675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    component: () => <StateMachine />
   },
   {
     navColor: "white",
     url:
-      "https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      "https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    component: () => <div>3</div>
   }
 ];
 
@@ -61,37 +67,7 @@ function Viewpager({ setNavColor }) {
     display: "block"
   }));
   const bind = useGesture({
-    onDrag: handleGesture({ index, setNavColor, set }),
-    onScroll: state => {
-      console.log({ state });
-    }
-    // onWheel: ({ direction: [, yDir], first, ...rest }) => {
-    //   console.log({ rest });
-    //   function updateCurrent() {
-    //     index.current = clamp(
-    //       index.current + (yDir > 0 ? 1 : -1),
-    //       Math.max(index.current - 1, 0),
-    //       Math.min(pages.length - 1, index.current + 1)
-    //     );
-    //     pages[index.current].navColor &&
-    //       setNavColor(pages[index.current].navColor);
-    //   }
-    //   if (first) {
-    //     updateCurrent({ index, setNavColor, yDir });
-    //   }
-    //   set(i => {
-    //     // if (i < index.current - 1 || i > index.current + 1)
-    //     //   return { display: "none" };
-    //     const y = (i - index.current) * window.innerHeight * Math.abs(yDir);
-    //     const sc = 0.95;
-    //     return { y, sc, display: "block" };
-    //   });
-    // },
-    // onWheelEnd: () => {
-    //   set(() => {
-    //     return { sc: 1, display: "block" };
-    //   });
-    // }
+    onDrag: handleGesture({ index, setNavColor, set })
   });
   return props.map(({ y, display, sc }, i) => {
     return (
@@ -111,7 +87,7 @@ function Viewpager({ setNavColor }) {
             backgroundImage: `url(${pages[i].url})`
           }}
         >
-          <div className="project-card">Inner content for things</div>
+          <div className="project-card">{pages[i].component()}</div>
         </animated.div>
       </animated.div>
     );

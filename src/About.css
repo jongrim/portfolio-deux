@@ -1,0 +1,75 @@
+.aboutContent {
+  padding: 3rem 20px;
+  background-color: #011c27;
+  color: #fff;
+  height: 100%;
+}
+
+@media (max-width: 678px) {
+  .aboutContent > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 980px) {
+  .intro {
+    width: 100%;
+  }
+  .programmingLikes {
+    width: 100%;
+  }
+  .hobbies {
+    width: 55%;
+  }
+}
+
+@media (min-width: 980px) {
+  .intro {
+    width: 60%;
+  }
+  .programmingLikes {
+    width: 60%;
+  }
+  .hobbies {
+    width: 55%;
+  }
+}
+
+.aboutContent > div {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.programmingLikes {
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.programmingLikes > p {
+  margin-bottom: 0;
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+.hobbies {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hobbies > p > span {
+  font-size: 1.2rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
