@@ -2,6 +2,9 @@ import React from "react";
 import "./App.css";
 import BrowsingSvg from "./BrowsingSvg";
 import TwitterSvg from "./TwitterSvg";
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-97016115-3");
 
 function App() {
   return (
