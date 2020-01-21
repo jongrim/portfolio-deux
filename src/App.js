@@ -1,62 +1,36 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import Viewpager from "./Viewpager";
-import About from "./About";
-
-function navColorReducer(state, action) {
-  const reducer = {
-    SET_NAV_COLOR: (state, action) => ({
-      navColor: action.payload,
-      prevColor: state.navColor
-    })
-  };
-  return reducer[action.type] ? reducer[action.type](state, action) : state;
-}
+import BrowsingSvg from "./BrowsingSvg";
+import TwitterSvg from "./TwitterSvg";
 
 function App() {
-  const [current, dispatch] = React.useReducer(navColorReducer, {
-    navColor: "#03254E"
-  });
-  const [position, setPosition] = React.useState("projects");
   return (
-    <Router>
-      <div className="container">
-        <div className="nav" style={{ color: current.navColor }}>
-          <button
-            onClick={() => {
-              setPosition("projects");
-              dispatch({ type: "SET_NAV_COLOR", payload: current.prevColor });
-            }}
-          >
-            Projects
-          </button>
-          <button
-            onClick={() => {
-              setPosition("about");
-              dispatch({ type: "SET_NAV_COLOR", payload: "#FECEE9" });
-            }}
-          >
-            About
-          </button>
+    <div className="app">
+      <div className="app-container">
+        <nav>
+          <ul>
+            <li>
+              <a href="https://blog.grimcoding.xyz">Blog</a>
+            </li>
+          </ul>
+          <a href="https://twitter.com/jonjongrim" className="social-link">
+            <TwitterSvg />
+          </a>
+        </nav>
+        <div className="browsing">
+          <div className="browsing-svg">
+            <BrowsingSvg />
+          </div>
+          <p className="intro">
+            Hi! I'm Jon. I build web applications for a living. Learning to code
+            has brought a new level of freedom and indepence to me for which I'm
+            extremely grateful. I love the feeling of being able to take an idea
+            and turn it into working software.
+          </p>
         </div>
-        <Screen position={position}>
-          <Viewpager
-            setNavColor={color =>
-              dispatch({ type: "SET_NAV_COLOR", payload: color })
-            }
-          />
-        </Screen>
-        <Screen position={position}>
-          <About />
-        </Screen>
       </div>
-    </Router>
+    </div>
   );
-}
-
-function Screen({ children, position }) {
-  return <div className={`screen ${position}`}>{children}</div>;
 }
 
 export default App;

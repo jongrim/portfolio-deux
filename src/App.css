@@ -4,90 +4,144 @@
 
 html,
 body {
-  overscroll-behavior-x: contain;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  user-select: none;
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
     helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-  position: fixed;
-  overflow: hidden;
+}
+
+p {
+  font-size: 1.2rem;
 }
 
 #root {
-  position: fixed;
-  overflow: scroll;
   width: 100%;
   height: 100%;
 }
 
-.container {
+.app {
+  height: 100%;
+  padding: 0 1rem;
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 100%) 0%,
+    hsl(0, 0%, 99.94%) 8.1%,
+    hsl(0, 0%, 99.76%) 15.5%,
+    hsl(0, 0%, 99.48%) 22.5%,
+    hsl(0, 0%, 99.12%) 29%,
+    hsl(0, 0%, 98.7%) 35.3%,
+    hsl(0, 0%, 98.24%) 41.2%,
+    hsl(0, 0%, 97.74%) 47.1%,
+    hsl(0, 0%, 97.23%) 52.9%,
+    hsl(0, 0%, 96.73%) 58.8%,
+    hsl(0, 0%, 96.25%) 64.7%,
+    hsl(0, 0%, 95.82%) 71%,
+    hsl(0, 0%, 95.44%) 77.5%,
+    hsl(0, 0%, 95.16%) 84.5%,
+    hsl(0, 0%, 94.97%) 91.9%,
+    hsl(0, 0%, 94.9%) 100%
+  );
+}
+
+.app-container {
+  margin: 0 auto;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .app-container {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .app-container {
+    width: 900px;
+  }
+}
+
+@media (max-width: 899px) {
+  .app-container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 599px) {
+  .app-container {
+    width: 100%;
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  flex: 0 0 50px;
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+a {
+  padding: 2px 0 1px 0;
+  color: black;
+  text-decoration: none;
+  border-bottom: 3px solid #145c9e;
+}
+
+a:visited {
+  color: #0b4f6c;
+}
+
+a:hover {
+  color: #5c9ead;
+}
+
+.browsing {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+}
+
+@media (max-width: 899px) {
+  .browsing {
+    grid-template-columns: 100%;
+  }
+}
+
+.browsing-svg {
+  display: flex;
   height: 100%;
+  justify-content: center;
 }
 
-.screen {
-  flex: 0 0 100%;
-  transition: transform 0.3s ease-out;
+.intro {
+  padding: 0 1rem;
+  line-height: 2rem;
+  text-align: justify;
 }
 
-.about {
-  transform: translateX(-100vw);
-  overflow: scroll;
+.twitter {
+  width: 2rem;
+  fill: rgba(20, 92, 158, 0.75);
 }
 
-.nav {
-  position: fixed;
-  z-index: 1;
-  color: white;
-  width: 100%;
-  margin: 5px 0 0 12px;
-}
-
-.nav > button {
-  background: transparent;
+.social-link {
   border: none;
-  padding: 0.5rem;
-  color: inherit;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.nav > button:hover {
-  cursor: pointer;
-}
-
-.project-card {
-  background-color: #fff;
-  padding: 2rem;
-  font-size: 24px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    0 100px 80px rgba(0, 0, 0, 0.07);
-  border-radius: 4px;
-}
-
-.outer {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  will-change: transform;
-}
-
-.inner {
+  padding: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-  box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5),
-    0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
 }
